@@ -10,3 +10,18 @@ FEATURES
 ========
 * syntax highlighting for structural Clafer
 * syntax highlighting for behavioral Clafer
+
+INSTALLATION
+============
+Please use a package manager.  This plugin should work with
+pathogen (https://github.com/tpope/vim-pathogen) and vundle
+(https://github.com/gmarik/Vundle.vim). The plugin is tested
+with vundle.
+
+KNOWN PROBLEMS
+==============
+
+* TODO
+
+TODO
+====
