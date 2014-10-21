@@ -1,0 +1,12 @@
+Clafer-vim ver. 1
+=================
+Integration of Clafer into VIM editing environment
+
+CONTRIBUTORS
+============
+Andrzej Wąsowski
+
+FEATURES
+========
+* syntax highlighting for structural Clafer
+* syntax highlighting for behavioral Clafer
