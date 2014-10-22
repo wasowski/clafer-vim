@@ -111,7 +111,7 @@ H ##> A [ H --> A ]
 
 // 31. Nesting constraints should not work
 // as well as dangling closing brackets
-[ [ ala.ma.kota + kot.ma.ale else life.is.very.sad ] ] ]#> ]=> ]->
+[ [ ala.ma.kota + kot.ma.ale else life.is.very.sad ] ] 
 
 // 32. Guarded transitions (actually constraints!)
 A -[ some ala.ma.kota ++ psa ]-> B 
@@ -119,7 +119,7 @@ A =[ some ala.ma.kota ++ psa ]=> B
 A #[ some ala.ma.kota ++ psa ]#> B 
 
 // 33. Opening and closing has to match (highlight errors)
-A -[ some ala.ma.kota ++ psa ]#> B  
+A -[ some ala.ma.kota ++ psa ]=> B  
 ]-> // reset highlighting context
 A =[ some ala.ma.kota ++ psa ]-> B 
 ]=> // reset highlighting context
@@ -133,14 +133,13 @@ A #[ some ala.ma.kota ++ psa ]=> B
 
 // 35. Closing with a wrong constraint bracket  (or nesting such an operator
 // inside a constraint
-[ ]-> ] // not exactly precise
-[ ]=> ]
-[ ]#> ] 
+[ finally ]-> final ] // not exactly precise, apparently the region closes, despite a match
+[ finally ]=> final ]
+[ finally ]#> final ] 
 
 // 35. Closing unopened transitions at top level should also be wrong
-]->
-]=>
-]#>
+[ ] ]->
+[ ] ]=>
+[ ] ]#>
 
 // 36. FIXME and TODO in comments
-

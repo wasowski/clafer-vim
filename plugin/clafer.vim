@@ -28,8 +28,8 @@ call s:ClaferSaveConfiguration()
 " destructor).  VIM calls this on user deactivating the plugin (a callback)
 let b:undo_ftplugin = ""
 
-autocmd FileType clafer set syntax=clafer
 autocmd FileType clafer set nospell
+autocmd FileType clafer set foldmethod=indent
 
 " see help 41.13 for inspiration
 
