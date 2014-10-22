@@ -25,4 +25,7 @@ KNOWN PROBLEMS
 
 TODO
 ====
+* integrate use of tags for navigation in the model
+* integrate instance generator 
+* indentation logics, if any
 * plugin menu for Clafer

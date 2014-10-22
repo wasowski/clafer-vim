@@ -1,0 +1,146 @@
+// A TEST FILE FOR CLAFER SYNTAX HIGHLIGHTING
+// THIS IS NOT A LEGAL CLAFER FILE FOR BREVITY
+// THE HIGHLIGHTER DOES NOT PARSE IT ANYWAYS
+
+// 1. One line comment at top level
+
+// 2. nested // line // comments
+
+// 3. One line comment in constraint
+[ ala // line comment nested in a constraint ]
+] // this fixes the highlighter context in vim after the above
+  // mess (might need to be done differently for other editors)
+
+// 4. empty comment block comment
+/**/
+
+/* 5. nested /* block */ comments */
+
+/* 6. A block comment // with a line
+// comment inside */
+
+// 7. A line comment with a /* block comment */ inside
+
+// 8. A block comment in constraints
+[ /* comment */ ]
+[ /* comment ] */ ]
+
+// 9. top-level keywords
+abstract enum final history initial
+
+// 10. top-level keywords should be illegal in constraints
+// should be highlighted (this pattern continues for many other tests
+[ abstract enum final history initial ]
+
+// 11. LTL operators in constraints
+[ U X G E ]
+// 12. LTL operators outside contraints are errors
+U X G E
+
+// 13. basic types at top level
+int integer string real clafer 
+// 14. basic types in constraints
+[ int integer string real clafer ]
+
+// 15. qualified identifiers at top level
+ala.ma.kota
+
+// 16. qualified identifiers in constraint
+[ ala.ma.kota ]
+
+// 17. toplevel string
+"including a nested quote \" and a ' single one"
+
+// 18. in constraints
+[ "string" ]
+
+// 19. Nesting comments in strings has no effect
+" /* comment // comment */"
+
+// 20. Nesting "strings in " comments has no effect
+/* "strings " */
+
+// 21. Cardinalities in toplevel
+xor or mux 0..1 clafer_name 0..1 0..* + ? *
+
+// 22. Cardinalities in constraints 
+// (+ and * should not be errors, as they are legal operators)
+// (clafer_names can also be used inside constraints) 
+[ xor or mux 0..1 clafer_name 0..1 0..* + ? * ]
+
+// 23. Equality is shared between toplevel and constraints
+[ a = b ]
+claferA :int = claferB
+
+// 24. Single char operators that only work in constraints
+// note the first two (*+) are special as they change meaning
+  * + - / | < > ( ) \ #
+[ * + - / | < > ( ) \ # ]
+
+// 25. Subtyping and references (top level only)
+A -> B 	[ ->  ]
+A ->> B [ ->> ]
+A :B 	[ :   ]
+
+// 26. Numeric constants at top level
+A = +100 [ A = +100 ] // slight inconsistency, signs become unary operators 
+B = -200 [ B = -200 ]
+C = 300  [ C = 300  ]
+// FIXME: only integers allowed so far
+// FIXME: if clafer allows expressions here, then we would need to create an
+// expression mode for initializers
+
+// 27. Broken numerals
+120alamakota [ 120alamakota ]
+
+// 27. 	Multi character operators, constraints only
+  || ++ != <: :> && >= <= => <=>
+[ || ++ != <: :> && >= <= => <=> ]
+
+// 28. Transitions (work both in toplevel and in constraints)
+A --> B [ A --> B ]
+C ==> D [ C --> D ]
+H ##> A [ H --> A ]
+
+// 29. Keywords of the constraint language
+  in opt ref parent children root this all lone no not disj one some else finally initially 
+[ in opt ref parent children root this all lone no not disj one some else finally initially ]
+
+// 30. Constraints
+[ ala.ma.kota + kot.ma.ale else life.is.very.sad ]
+
+// 31. Nesting constraints should not work
+// as well as dangling closing brackets
+[ [ ala.ma.kota + kot.ma.ale else life.is.very.sad ] ] ]#> ]=> ]->
+
+// 32. Guarded transitions (actually constraints!)
+A -[ some ala.ma.kota ++ psa ]-> B 
+A =[ some ala.ma.kota ++ psa ]=> B 
+A #[ some ala.ma.kota ++ psa ]#> B 
+
+// 33. Opening and closing has to match (highlight errors)
+A -[ some ala.ma.kota ++ psa ]#> B  
+]-> // reset highlighting context
+A =[ some ala.ma.kota ++ psa ]-> B 
+]=> // reset highlighting context
+A #[ some ala.ma.kota ++ psa ]=> B 
+]#> // reset highlighting context
+
+// 34. Transitions nested in constraints should not fly either
+[ -[ ]
+[ =[ ]
+[ #[ ]
+
+// 35. Closing with a wrong constraint bracket  (or nesting such an operator
+// inside a constraint
+[ ]-> ] // not exactly precise
+[ ]=> ]
+[ ]#> ] 
+
+// 35. Closing unopened transitions at top level should also be wrong
+]->
+]=>
+]#>
+
+// 36. FIXME and TODO in comments
+
