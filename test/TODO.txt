@@ -1,0 +1,11 @@
+
+
+For now just a few ideas what to test (if we ever decide to test things)
+
+T1. How does this behave when starting in compatible mode (does it?) Any other
+relevant modes/switches to try? Actually we have a case of a highly
+configurable system testing :)
+
+
+
+I start my vim testing environemnt with: vim -u ~/.vimrc-test
