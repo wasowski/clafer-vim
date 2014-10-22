@@ -28,9 +28,8 @@ call s:ClaferSaveConfiguration()
 " destructor).  VIM calls this on user deactivating the plugin (a callback)
 let b:undo_ftplugin = ""
 
-
-" at the moment the script does nothing
-echo "Ala ma kota"
+autocmd FileType clafer set syntax=clafer
+autocmd FileType clafer set nospell
 
 " see help 41.13 for inspiration
 

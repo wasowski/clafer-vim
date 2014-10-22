@@ -1,5 +1,6 @@
-if exists("b:current_syntax")
-  finish
+if &compatible || v:version < 603 || exists("b:current_syntax")
+	echo b:current_syntax "already laoded; finishing"
+	finish
 endif
 
 setlocal iskeyword+=":][>=->"
@@ -19,3 +20,5 @@ highlight link ClaferPunctuation Operator
 highlight link ClaferType 			Type
 
 let b:current_syntax = "clafer"
+
+echo "Clafer syntax has been loaded"
