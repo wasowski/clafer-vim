@@ -1,9 +1,10 @@
-clafer-vim ver. 1
-=================
+clafer-vim 
+==========
 Integration of Clafer into VIM editing environment
+ver. 1
 
-#CONTRIBUTORS
--------------
+CONTRIBUTORS
+------------
 Andrzej Wąsowski
 
 FEATURES
