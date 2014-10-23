@@ -136,6 +136,9 @@ hi link BCfrConstrKeywords	CfrConstrKeywords
 " the interior has its own groups
 hi link CfrConstr 		Ignore
 
+" this will make the folds less intrusive, so you can use them to read the " model
+hi clear Folded
+
 let b:current_syntax = "clafer"
 
 "vim:ts=4
