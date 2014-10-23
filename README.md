@@ -1,7 +1,9 @@
 clafer-vim 
 ==========
 Integration of Clafer into VIM editing environment
+
 ver. 1
+
 
 Contributors
 ------------
@@ -20,9 +22,9 @@ extension. Highlighting and folding should work out of the box.
 Installation
 ------------
 Please use a package manager.  This plugin should work with
-pathogen (https://github.com/tpope/vim-pathogen) and vundle
-(https://github.com/gmarik/Vundle.vim). It should be cloned 
-to your bundle directory.
+[pathogen](https://github.com/tpope/vim-pathogen) and
+[vundle](https://github.com/gmarik/Vundle.vim). It should be cloned to your
+bundle directory.
 
 I am using [vundle](https://github.com/gmarik/Vundle.vim), so 
 I added to the vundle section of my `.vimrc` file:
