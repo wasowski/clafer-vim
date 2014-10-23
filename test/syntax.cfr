@@ -80,7 +80,8 @@ claferA :int = claferB
 // 25. Subtyping and references (top level only)
 A -> B 	[ ->  ]
 A ->> B [ ->> ]
-A :B 	[ :   ]
+A :B 	[ :   ] // colon is a legit operator in constraints
+		// as it is always used for typing it retains color across modes
 
 // 26. Numeric constants at top level
 A = +100 [ A = +100 ] // slight inconsistency, signs become unary operators 
@@ -134,7 +135,7 @@ A #[ some ala.ma.kota ++ psa ]=> B
 // 35. Closing with a wrong constraint bracket  (or nesting such an operator
 // inside a constraint
 [ finally ]-> final ] // not exactly precise, apparently the region closes, despite a match
-[ finally ]=> final ]
+[ finally ]=> final ] // but some errors are highlighted so I stop perfecting this
 [ finally ]#> final ] 
 
 // 35. Closing unopened transitions at top level should also be wrong

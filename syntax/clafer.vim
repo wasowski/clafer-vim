@@ -39,8 +39,9 @@ syn match	CfrCardinality /\m\(\(\d\+\|\*\)\.\.\(\d\+\|\*\)\)\|?/
 syn match	Error /\m\(\(\d\+\|\*\)\.\.\(\d\+\|\*\)\)\|?/ containedin=CfrConstr contained 
 
 " subtyping constructs
-syn match CfrTopLevelPunctuation	/\m->>\|->\|:/
-syn match Error						/\m->>\|->\|:/ containedin=CfrConstr contained
+syn match CfrTopLevelPunctuation /:/ containedin=CfrConstr
+syn match CfrTopLevelPunctuation	/\m->>\|->/
+syn match Error						/\m->>\|->/ containedin=CfrConstr contained
 
 " multi character operators and punctuation
 syn match CfrConstrPunctuation	/\m||\|++\|!=/ containedin=CfrConstr contained
@@ -104,33 +105,35 @@ syn keyword Todo TODO FIXME containedin=CfrLineComment,CfrBlockComment contained
 
 
 " select color groups
+hi link CfrKeyword		Keyword
+hi link BCfrKeyword		Keyword
 
-hi link CfrKeyword			Keyword
-hi link BCfrKeyword			Keyword
-hi link CfrLineComment		Comment
+hi link CfrLineComment	Comment
 hi link CfrBlockComment	Comment
 hi link CfrString			String
 
-hi link CfrIdentifier		Identifier
+" using Normal warrants that the models are not too flashy; there
+" is not much besides identifiers in these models ...
+hi link CfrIdentifier	Normal
 hi link CfrNumber			Number
-hi link CfrType				Type
-" FIXME: Type above
-hi link CfrError				Error
+hi link CfrType			Type
 
 hi link CfrCardinality 	StorageClass
 
-hi link CfrTopLevelPunctuation		Function
-" FIXME:operator
-hi link CfrConstrPunctuation	Operator
-" FIXME Operator
-hi link BCfrConstrPunctuation	CfrConstrPunctuation
-hi link CfrLeakingPunctuation	CfrConstrPunctuation
-hi link BCfrLeakingPunctuation	CfrTopLevelPunctuation
-hi link BCfrPunctuation	Operator
+" as we use Normal for identifiers, we risk using 
+" this color for another frequent element
+hi link CfrTopLevelPunctuation	Identifier
+hi link CfrConstrPunctuation		Operator
+hi link BCfrConstrPunctuation		CfrConstrPunctuation
+hi link CfrLeakingPunctuation		CfrConstrPunctuation
+hi link BCfrLeakingPunctuation	CfrConstrPunctuation
+hi link BCfrPunctuation				CfrConstrPunctuation
 
-hi link CfrConstrKeywords		Keyword
+hi link CfrConstrKeywords	Keyword
 hi link BCfrConstrKeywords	CfrConstrKeywords
 
+" constraints should not be highlighted; just their boundaries.
+" the interior has its own groups
 hi link CfrConstr 		Ignore
 
 let b:current_syntax = "clafer"

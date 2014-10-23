@@ -1,0 +1,186 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>~/work/2014-clafer-vim/test/syntax.cfr.html</title>
+<meta name="Generator" content="Vim/7.4">
+<meta name="plugin-version" content="vim7.4_v1">
+<meta name="syntax" content="clafer">
+<meta name="settings" content="use_css,pre_wrap,no_foldcolumn,prevent_copy=">
+<meta name="colorscheme" content="hybrid">
+<style type="text/css">
+<!--
+pre { white-space: pre-wrap; font-family: monospace; color: #c5c8c6; background-color: #1d1f21; }
+body { font-family: monospace; color: #c5c8c6; background-color: #1d1f21; }
+* { font-size: 1em; }
+.Type { color: #de935f; }
+.String { color: #b5bd68; }
+.Statement { color: #81a2be; }
+.Operator { color: #8abeb7; }
+.Normal { color: #c5c8c6; background-color: #1d1f21; padding-bottom: 1px; }
+.Error { color: #cc6666; background-color: #5f0000; padding-bottom: 1px; text-decoration: underline; }
+.Comment { color: #707880; }
+.Constant { color: #cc6666; }
+.Identifier { color: #b294bb; }
+.Todo { color: #d7ffaf; }
+-->
+</style>
+
+<script type='text/javascript'>
+<!--
+
+-->
+</script>
+</head>
+<body>
+<pre id='vimCodeElement'>
+<span class="Comment">// A TEST FILE FOR CLAFER SYNTAX HIGHLIGHTING</span>
+<span class="Comment">// THIS IS NOT A LEGAL CLAFER FILE FOR BREVITY</span>
+<span class="Comment">// THE HIGHLIGHTER DOES NOT PARSE IT ANYWAYS</span>
+
+<span class="Comment">// 1. One line comment at top level</span>
+
+<span class="Comment">// 2. nested // line // comments</span>
+
+<span class="Comment">// 3. One line comment in constraint</span>
+<span class="Identifier">[</span> <span class="Normal">ala</span> <span class="Comment">// line comment nested in a constraint ]</span>
+<span class="Identifier">]</span> <span class="Comment">// this fixes the highlighter context in vim after the above</span>
+  <span class="Comment">// mess (might need to be done differently for other editors)</span>
+
+<span class="Comment">// 4. empty comment block comment</span>
+<span class="Comment">/**/</span>
+
+<span class="Comment">/* 5. nested /* block */ comments */</span>
+
+<span class="Comment">/* 6. A block comment // with a line</span>
+<span class="Comment">// comment inside */</span>
+
+<span class="Comment">// 7. A line comment with a /* block comment */ inside</span>
+
+<span class="Comment">// 8. A block comment in constraints</span>
+<span class="Identifier">[</span> <span class="Comment">/* comment */</span> <span class="Identifier">]</span>
+<span class="Identifier">[</span> <span class="Comment">/* comment ] */</span> <span class="Identifier">]</span>
+
+<span class="Comment">// 9. top-level keywords</span>
+<span class="Statement">abstract</span> <span class="Statement">enum</span> <span class="Statement">final</span> <span class="Statement">history</span> <span class="Statement">initial</span>
+
+<span class="Comment">// 10. top-level keywords should be illegal in constraints</span>
+<span class="Comment">// should be highlighted (this pattern continues for many other tests</span>
+<span class="Identifier">[</span> <span class="Error">abstract</span> <span class="Error">enum</span> <span class="Error">final</span> <span class="Error">history</span> <span class="Error">initial</span> <span class="Identifier">]</span>
+
+<span class="Comment">// 11. LTL operators in constraints</span>
+<span class="Identifier">[</span> <span class="Operator">U</span> <span class="Operator">X</span> <span class="Operator">G</span> <span class="Operator">E</span> <span class="Identifier">]</span>
+<span class="Comment">// 12. LTL operators outside contraints are errors</span>
+<span class="Error">U</span> <span class="Error">X</span> <span class="Error">G</span> <span class="Error">E</span>
+
+<span class="Comment">// 13. basic types at top level</span>
+<span class="Type">int</span> <span class="Type">integer</span> <span class="Type">string</span> <span class="Type">real</span> <span class="Type">clafer</span>
+<span class="Comment">// 14. basic types in constraints</span>
+<span class="Identifier">[</span> <span class="Error">int</span> <span class="Error">integer</span> <span class="Error">string</span> <span class="Error">real</span> <span class="Error">clafer</span> <span class="Identifier">]</span>
+
+<span class="Comment">// 15. qualified identifiers at top level</span>
+<span class="Normal">ala</span><span class="Operator">.</span><span class="Normal">ma</span><span class="Operator">.</span><span class="Normal">kota</span>
+
+<span class="Comment">// 16. qualified identifiers in constraint</span>
+<span class="Identifier">[</span> <span class="Normal">ala</span><span class="Operator">.</span><span class="Normal">ma</span><span class="Operator">.</span><span class="Normal">kota</span> <span class="Identifier">]</span>
+
+<span class="Comment">// 17. toplevel string</span>
+<span class="String">&quot;including a nested quote \&quot; and a ' single one&quot;</span>
+
+<span class="Comment">// 18. in constraints</span>
+<span class="Identifier">[</span> <span class="String">&quot;string&quot;</span> <span class="Identifier">]</span>
+
+<span class="Comment">// 19. Nesting comments in strings has no effect</span>
+<span class="String">&quot; /* comment // comment */&quot;</span>
+
+<span class="Comment">// 20. Nesting &quot;strings in &quot; comments has no effect</span>
+<span class="Comment">/* &quot;strings &quot; */</span>
+
+<span class="Comment">// 21. Cardinalities in toplevel</span>
+<span class="Type">xor</span> <span class="Type">or</span> <span class="Type">mux</span> <span class="Type">0..1</span> <span class="Normal">clafer_name</span> <span class="Type">0..1</span> <span class="Type">0..*</span> <span class="Type">+</span> <span class="Type">?</span> <span class="Type">*</span>
+
+<span class="Comment">// 22. Cardinalities in constraints </span>
+<span class="Comment">// (+ and * should not be errors, as they are legal operators)</span>
+<span class="Comment">// (clafer_names can also be used inside constraints) </span>
+<span class="Identifier">[</span> <span class="Error">xor</span> <span class="Error">or</span> <span class="Error">mux</span> <span class="Error">0..1</span> <span class="Normal">clafer_name</span> <span class="Error">0..1</span> <span class="Error">0..*</span> <span class="Operator">+</span> <span class="Error">?</span> <span class="Operator">*</span> <span class="Identifier">]</span>
+
+<span class="Comment">// 23. Equality is shared between toplevel and constraints</span>
+<span class="Identifier">[</span> <span class="Normal">a</span> <span class="Operator">=</span> <span class="Normal">b</span> <span class="Identifier">]</span>
+<span class="Normal">claferA</span> <span class="Identifier">:</span><span class="Type">int</span> <span class="Operator">=</span> <span class="Normal">claferB</span>
+
+<span class="Comment">// 24. Single char operators that only work in constraints</span>
+<span class="Comment">// note the first two (*+) are special as they change meaning</span>
+  <span class="Type">*</span> <span class="Type">+</span> <span class="Error">-</span> <span class="Error">/</span> <span class="Error">|</span> <span class="Error">&lt;</span> <span class="Error">&gt;</span> <span class="Error">(</span> <span class="Error">)</span> <span class="Error">\</span> <span class="Error">#</span>
+<span class="Identifier">[</span> <span class="Operator">*</span> <span class="Operator">+</span> <span class="Operator">-</span> <span class="Operator">/</span> <span class="Operator">|</span> <span class="Operator">&lt;</span> <span class="Operator">&gt;</span> <span class="Operator">(</span> <span class="Operator">)</span> <span class="Operator">\</span> <span class="Operator">#</span> <span class="Identifier">]</span>
+
+<span class="Comment">// 25. Subtyping and references (top level only)</span>
+<span class="Normal">A</span> <span class="Identifier">-&gt;</span> <span class="Normal">B</span> 	<span class="Identifier">[</span> <span class="Error">-&gt;</span>  <span class="Identifier">]</span>
+<span class="Normal">A</span> <span class="Identifier">-&gt;&gt;</span> <span class="Normal">B</span> <span class="Identifier">[</span> <span class="Error">-&gt;&gt;</span> <span class="Identifier">]</span>
+<span class="Normal">A</span> <span class="Identifier">:</span><span class="Normal">B</span> 	<span class="Identifier">[</span> <span class="Identifier">:</span>   <span class="Identifier">]</span> <span class="Comment">// colon is a legit operator in constraints</span>
+		<span class="Comment">// as it is always used for typing it retains color across modes</span>
+
+<span class="Comment">// 26. Numeric constants at top level</span>
+<span class="Normal">A</span> <span class="Operator">=</span> <span class="Constant">+100</span> <span class="Identifier">[</span> <span class="Normal">A</span> <span class="Operator">=</span> <span class="Operator">+</span><span class="Constant">100</span> <span class="Identifier">]</span> <span class="Comment">// slight inconsistency, signs become unary operators </span>
+<span class="Normal">B</span> <span class="Operator">=</span> <span class="Constant">-200</span> <span class="Identifier">[</span> <span class="Normal">B</span> <span class="Operator">=</span> <span class="Operator">-</span><span class="Constant">200</span> <span class="Identifier">]</span>
+<span class="Normal">C</span> <span class="Operator">=</span> <span class="Constant">300</span>  <span class="Identifier">[</span> <span class="Normal">C</span> <span class="Operator">=</span> <span class="Constant">300</span>  <span class="Identifier">]</span>
+<span class="Comment">// </span><span class="Todo">FIXME</span><span class="Comment">: only integers allowed so far</span>
+<span class="Comment">// </span><span class="Todo">FIXME</span><span class="Comment">: if clafer allows expressions here, then we would need to create an</span>
+<span class="Comment">// expression mode for initializers</span>
+
+<span class="Comment">// 27. Broken numerals</span>
+<span class="Error">120alamakota</span> <span class="Identifier">[</span> <span class="Error">120alamakota</span> <span class="Identifier">]</span>
+
+<span class="Comment">// 27. 	Multi character operators, constraints only</span>
+  <span class="Error">||</span> <span class="Error">++</span> <span class="Error">!=</span> <span class="Error">&lt;:</span> <span class="Error">:&gt;</span> <span class="Error">&amp;&amp;</span> <span class="Error">&gt;=</span> <span class="Error">&lt;=</span> <span class="Error">=&gt;</span> <span class="Error">&lt;=&gt;</span>
+<span class="Identifier">[</span> <span class="Operator">||</span> <span class="Operator">++</span> <span class="Operator">!=</span> <span class="Operator">&lt;:</span> <span class="Operator">:&gt;</span> <span class="Operator">&amp;&amp;</span> <span class="Operator">&gt;=</span> <span class="Operator">&lt;=</span> <span class="Operator">=&gt;</span> <span class="Operator">&lt;=&gt;</span> <span class="Identifier">]</span>
+
+<span class="Comment">// 28. Transitions (work both in toplevel and in constraints)</span>
+<span class="Normal">A</span> <span class="Operator">--&gt;</span> <span class="Normal">B</span> <span class="Identifier">[</span> <span class="Normal">A</span> <span class="Operator">--&gt;</span> <span class="Normal">B</span> <span class="Identifier">]</span>
+<span class="Normal">C</span> <span class="Operator">==&gt;</span> <span class="Normal">D</span> <span class="Identifier">[</span> <span class="Normal">C</span> <span class="Operator">--&gt;</span> <span class="Normal">D</span> <span class="Identifier">]</span>
+<span class="Normal">H</span> <span class="Operator">##&gt;</span> <span class="Normal">A</span> <span class="Identifier">[</span> <span class="Normal">H</span> <span class="Operator">--&gt;</span> <span class="Normal">A</span> <span class="Identifier">]</span>
+
+<span class="Comment">// 29. Keywords of the constraint language</span>
+  <span class="Error">in</span> <span class="Error">opt</span> <span class="Error">ref</span> <span class="Error">parent</span> <span class="Error">children</span> <span class="Error">root</span> <span class="Error">this</span> <span class="Error">all</span> <span class="Error">lone</span> <span class="Error">no</span> <span class="Error">not</span> <span class="Error">disj</span> <span class="Error">one</span> <span class="Error">some</span> <span class="Error">else</span> <span class="Error">finally</span> <span class="Error">initially</span>
+<span class="Identifier">[</span> <span class="Statement">in</span> <span class="Statement">opt</span> <span class="Statement">ref</span> <span class="Statement">parent</span> <span class="Statement">children</span> <span class="Statement">root</span> <span class="Statement">this</span> <span class="Statement">all</span> <span class="Statement">lone</span> <span class="Statement">no</span> <span class="Statement">not</span> <span class="Statement">disj</span> <span class="Statement">one</span> <span class="Statement">some</span> <span class="Statement">else</span> <span class="Statement">finally</span> <span class="Statement">initially</span> <span class="Identifier">]</span>
+
+<span class="Comment">// 30. Constraints</span>
+<span class="Identifier">[</span> <span class="Normal">ala</span><span class="Operator">.</span><span class="Normal">ma</span><span class="Operator">.</span><span class="Normal">kota</span> <span class="Operator">+</span> <span class="Normal">kot</span><span class="Operator">.</span><span class="Normal">ma</span><span class="Operator">.</span><span class="Normal">ale</span> <span class="Statement">else</span> <span class="Normal">life</span><span class="Operator">.</span><span class="Normal">is</span><span class="Operator">.</span><span class="Normal">very</span><span class="Operator">.</span><span class="Normal">sad</span> <span class="Identifier">]</span>
+
+<span class="Comment">// 31. Nesting constraints should not work</span>
+<span class="Comment">// as well as dangling closing brackets</span>
+<span class="Identifier">[</span> <span class="Error">[</span> <span class="Normal">ala</span><span class="Operator">.</span><span class="Normal">ma</span><span class="Operator">.</span><span class="Normal">kota</span> <span class="Operator">+</span> <span class="Normal">kot</span><span class="Operator">.</span><span class="Normal">ma</span><span class="Operator">.</span><span class="Normal">ale</span> <span class="Statement">else</span> <span class="Normal">life</span><span class="Operator">.</span><span class="Normal">is</span><span class="Operator">.</span><span class="Normal">very</span><span class="Operator">.</span><span class="Normal">sad</span> <span class="Identifier">]</span> <span class="Error">]</span>
+
+<span class="Comment">// 32. Guarded transitions (actually constraints!)</span>
+<span class="Normal">A</span> <span class="Identifier">-[</span> <span class="Statement">some</span> <span class="Normal">ala</span><span class="Operator">.</span><span class="Normal">ma</span><span class="Operator">.</span><span class="Normal">kota</span> <span class="Operator">++</span> <span class="Normal">psa</span> <span class="Identifier">]-&gt;</span> <span class="Normal">B</span>
+<span class="Normal">A</span> <span class="Identifier">=[</span> <span class="Statement">some</span> <span class="Normal">ala</span><span class="Operator">.</span><span class="Normal">ma</span><span class="Operator">.</span><span class="Normal">kota</span> <span class="Operator">++</span> <span class="Normal">psa</span> <span class="Identifier">]=&gt;</span> <span class="Normal">B</span>
+<span class="Normal">A</span> <span class="Identifier">#[</span> <span class="Statement">some</span> <span class="Normal">ala</span><span class="Operator">.</span><span class="Normal">ma</span><span class="Operator">.</span><span class="Normal">kota</span> <span class="Operator">++</span> <span class="Normal">psa</span> <span class="Identifier">]#&gt;</span> <span class="Normal">B</span>
+
+<span class="Comment">// 33. Opening and closing has to match (highlight errors)</span>
+<span class="Normal">A</span> <span class="Identifier">-[</span> <span class="Statement">some</span> <span class="Normal">ala</span><span class="Operator">.</span><span class="Normal">ma</span><span class="Operator">.</span><span class="Normal">kota</span> <span class="Operator">++</span> <span class="Normal">psa</span> <span class="Error">]=&gt;</span> <span class="Normal">B</span>
+<span class="Identifier">]-&gt;</span> <span class="Comment">// reset highlighting context</span>
+<span class="Normal">A</span> <span class="Identifier">=[</span> <span class="Statement">some</span> <span class="Normal">ala</span><span class="Operator">.</span><span class="Normal">ma</span><span class="Operator">.</span><span class="Normal">kota</span> <span class="Operator">++</span> <span class="Normal">psa</span> <span class="Error">]-&gt;</span> <span class="Normal">B</span>
+<span class="Identifier">]=&gt;</span> <span class="Comment">// reset highlighting context</span>
+<span class="Normal">A</span> <span class="Identifier">#[</span> <span class="Statement">some</span> <span class="Normal">ala</span><span class="Operator">.</span><span class="Normal">ma</span><span class="Operator">.</span><span class="Normal">kota</span> <span class="Operator">++</span> <span class="Normal">psa</span> <span class="Error">]=&gt;</span> <span class="Normal">B</span>
+<span class="Identifier">]#&gt;</span> <span class="Comment">// reset highlighting context</span>
+
+<span class="Comment">// 34. Transitions nested in constraints should not fly either</span>
+<span class="Identifier">[</span> <span class="Error">-[</span> <span class="Identifier">]</span>
+<span class="Identifier">[</span> <span class="Error">=[</span> <span class="Identifier">]</span>
+<span class="Identifier">[</span> <span class="Error">#[</span> <span class="Identifier">]</span>
+
+<span class="Comment">// 35. Closing with a wrong constraint bracket  (or nesting such an operator</span>
+<span class="Comment">// inside a constraint</span>
+<span class="Identifier">[</span> <span class="Statement">finally</span> <span class="Identifier">]-&gt;</span> <span class="Statement">final</span> <span class="Error">]</span> <span class="Comment">// not exactly precise, apparently the region closes, despite a match</span>
+<span class="Identifier">[</span> <span class="Statement">finally</span> <span class="Identifier">]</span><span class="Error">=&gt;</span> <span class="Statement">final</span> <span class="Error">]</span> <span class="Comment">// but some errors are highlighted so I stop perfecting this</span>
+<span class="Identifier">[</span> <span class="Statement">finally</span> <span class="Identifier">]</span><span class="Error">#&gt;</span> <span class="Statement">final</span> <span class="Error">]</span>
+
+<span class="Comment">// 35. Closing unopened transitions at top level should also be wrong</span>
+<span class="Identifier">[</span> <span class="Identifier">]</span> <span class="Error">]-&gt;</span>
+<span class="Identifier">[</span> <span class="Identifier">]</span> <span class="Error">]=&gt;</span>
+<span class="Identifier">[</span> <span class="Identifier">]</span> <span class="Error">]#&gt;</span>
+
+<span class="Comment">// 36. </span><span class="Todo">FIXME</span><span class="Comment"> and </span><span class="Todo">TODO</span><span class="Comment"> in comments</span>
+</pre>
+</body>
+</html>
+<!-- vim: set foldmethod=manual : -->
