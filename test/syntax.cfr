@@ -138,9 +138,9 @@ A #[ some ala.ma.kota ++ psa ]=> B
 [ finally ]=> final ] // but some errors are highlighted so I stop perfecting this
 [ finally ]#> final ] 
 
-// 35. Closing unopened transitions at top level should also be wrong
+// 36. Closing unopened transitions at top level should also be wrong
 [ ] ]->
 [ ] ]=>
 [ ] ]#>
 
-// 36. FIXME and TODO in comments
+// 37. FIXME and TODO in comments
