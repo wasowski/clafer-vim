@@ -3,21 +3,21 @@ clafer-vim
 Integration of Clafer into VIM editing environment
 ver. 1
 
-CONTRIBUTORS
+Contributors
 ------------
 Andrzej Wąsowski
 
-FEATURES
+Features
 --------
 * syntax highlighting for structural and behavioral Clafer, including marking simple errors
 * indentation based folding for collapsing parts of the model (experimental)
 
-USAGE
+Usage
 -----
 After installing (see below) just open or create a Clafer file with a .cfr
 extension. Highlighting and folding should work out of the box.
 
-INSTALLATION
+Installation
 ------------
 Please use a package manager.  This plugin should work with
 pathogen (https://github.com/tpope/vim-pathogen) and vundle
@@ -39,7 +39,7 @@ To update the plugin to the newest version on Github just run:
 
 	:PluginUpdate
 
-To uninstall, remove the line from `.vimrc` first, then restart vim and run 
+To uninstall, remove the clafer-vim line from `.vimrc` first, then restart vim and run 
 
 	:PluginClean
 
@@ -56,4 +56,4 @@ TODO
 * provide a plugin menu for Clafer
 * write a help file
 
-Pull requests are well seen.
+Pull requests are welcomed.
