@@ -43,7 +43,7 @@ To uninstall, remove the clafer-vim line from `.vimrc` first, then restart vim a
 
 	:PluginClean
 
-KNOWN PROBLEMS
+Known Problems
 --------------
 * Folding is dependent on the depth of indentation. Doesn't always work.
 
