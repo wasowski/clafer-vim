@@ -1,0 +1,4 @@
+origin: git@github.com:wasowski/clafer-vim.git
+backup_mirrors:
+- gitolite@157.180.66.24:clafer-vim
+- gitolite@localhost:clafer-vim
